@@ -2,116 +2,114 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Workply - Conectando talento y empresas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workply - Conecta talento y empresas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
+    <header class="topbar">
         <div class="logo">Workply</div>
-        <nav class="nav">
-            <a href="#" id="btn-home">Inicio</a>
-            <a href="#" id="btn-trabajador">Soy trabajador</a>
-            <a href="#" id="btn-empresa">Soy empresa</a>
+        <nav class="menu">
+            <button class="menu-btn active" data-section="inicio">Inicio</button>
+            <button class="menu-btn" data-section="trabajadores">Trabajadores</button>
+            <button class="menu-btn" data-section="empresas">Empresas</button>
         </nav>
     </header>
 
-    <main class="main">
-        <!-- Sección de inicio -->
-        <section id="home-section" class="section active">
-            <h1>Encuentra trabajo o talento de forma sencilla</h1>
-            <p>
-                Workply conecta <strong>trabajadores</strong> y <strong>empresas</strong>
-                de manera rápida, clara y sin complicaciones.
+    <main class="container">
+              <!-- INICIO -->
+        <section id="inicio" class="section visible">
+            <h1>Encuentra el trabajo o el talento ideal</h1>
+            <p class="subtitle">
+                Workply conecta trabajadores y empresas de forma rápida y sencilla.
             </p>
 
-            <div class="home-buttons">
-                <button id="home-trabajador" class="btn-primario">
-                    Quiero buscar trabajo
-                </button>
-                <button id="home-empresa" class="btn-secundario">
-                    Quiero encontrar candidatos
-                </button>
+            <!-- Tarjetas de entrada -->
+            <div class="cards">
+                <div id="cardTrabajadores" class="card clickable">
+                    <h2>Para trabajadores</h2>
+                    <p>
+                        Crea tu perfil, indica tu experiencia y recibe ofertas adaptadas a ti.
+                    </p>
+                    <ul>
+                        <li>📄 Perfil profesional básico</li>
+                        <li>🔍 Búsqueda rápida por ciudad y sector</li>
+                        <li>⭐ Guarda tus ofertas favoritas</li>
+                    </ul>
+                </div>
+
+                <div id="cardEmpresas" class="card clickable">
+                    <h2>Para empresas</h2>
+                    <p>
+                        Publica ofertas y gestiona candidatos desde una sola pantalla.
+                    </p>
+                    <ul>
+                        <li>📢 Publicación de ofertas</li>
+                        <li>👥 Listado de candidatos</li>
+                        <li>✅ Estado de cada candidatura</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ofertas destacadas en la portada -->
+            <h2 style="margin-top: 30px; margin-bottom: 10px;">Ofertas destacadas</h2>
+            <p class="subtitle">Algunas ofertas recientes de ejemplo:</p>
+            <div id="ofertasDestacadas" class="cards">
+                <!-- Se rellena desde script.js -->
             </div>
         </section>
 
-        <!-- Sección formulario trabajador -->
-        <section id="trabajador-section" class="section">
-            <h2>Registro para trabajadores</h2>
-            <p>Cuéntanos quién eres y qué tipo de trabajo buscas.</p>
+        <!-- TRABAJADORES -->
+        <section id="trabajadores" class="section">
+            <h1>Zona de trabajadores</h1>
+            <p class="subtitle">
+                Aquí podrás buscar ofertas y más adelante registrarte en la plataforma.
+            </p>
 
-            <form id="form-trabajador" class="formulario">
-                <label>
-                    Nombre completo
-                    <input type="text" name="nombre" required>
-                </label>
+            <div class="filters">
+                <input type="text" id="filtroPalabra" placeholder="Buscar por palabra clave (ej: operario, programador)">
+                <input type="text" id="filtroCiudad" placeholder="Ciudad (ej: Madrid, Sevilla)">
+                <button id="btnBuscarOfertas">Buscar ofertas</button>
+            </div>
 
-                <label>
-                    Email de contacto
-                    <input type="email" name="email" required>
-                </label>
-
-                <label>
-                    Ciudad / Ubicación
-                    <input type="text" name="ciudad">
-                </label>
-
-                <label>
-                    Puesto o perfil profesional
-                    <input type="text" name="perfil" placeholder="Ej: Operario, programador, administrativo...">
-                </label>
-
-                <label>
-                    Experiencia
-                    <textarea name="experiencia" rows="3" placeholder="Breve resumen de tu experiencia"></textarea>
-                </label>
-
-                <button type="submit" class="btn-primario">Enviar mi perfil</button>
-            </form>
+            <div id="listaOfertas" class="cards">
+                <!-- Se rellenará desde script.js con datos de ejemplo -->
+            </div>
         </section>
 
-        <!-- Sección formulario empresa -->
-        <section id="empresa-section" class="section">
-            <h2>Registro para empresas</h2>
-            <p>Publica tus ofertas y encuentra el perfil que necesitas.</p>
+        <!-- EMPRESAS -->
+        <section id="empresas" class="section">
+            <h1>Zona de empresas</h1>
+            <p class="subtitle">
+                Publica ofertas y revisa candidatos. De momento es una simulación sin base de datos.
+            </p>
 
-            <form id="form-empresa" class="formulario">
+            <form id="formOferta" class="form">
+                <h2>Crear oferta de empleo (demo)</h2>
                 <label>
-                    Nombre de la empresa
-                    <input type="text" name="empresa" required>
+                    Puesto:
+                    <input type="text" id="ofertaPuesto" required>
                 </label>
-
                 <label>
-                    Persona de contacto
-                    <input type="text" name="contacto" required>
+                    Ciudad:
+                    <input type="text" id="ofertaCiudad" required>
                 </label>
-
                 <label>
-                    Email de contacto
-                    <input type="email" name="email" required>
+                    Descripción:
+                    <textarea id="ofertaDescripcion" rows="3" required></textarea>
                 </label>
-
-                <label>
-                    Ciudad / Ubicación
-                    <input type="text" name="ciudad">
-                </label>
-
-                <label>
-                    Puesto que buscas
-                    <input type="text" name="puesto" placeholder="Ej: Técnico mantenimiento, analista, etc.">
-                </label>
-
-                <label>
-                    Descripción de la oferta
-                    <textarea name="descripcion" rows="3" placeholder="Funciones principales, horario, tipo de contrato..."></textarea>
-                </label>
-
-                <button type="submit" class="btn-primario">Publicar necesidad</button>
+                <button type="submit">Guardar oferta (demo)</button>
             </form>
+
+            <h2>Ofertas creadas (solo en esta sesión)</h2>
+            <div id="ofertasEmpresa" class="cards">
+                <!-- Se rellenará desde script.js -->
+            </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>Workply · Demo inicial · 2025</p>
+        Workply © 2025 · Proyecto personal de aprendizaje
     </footer>
 
     <script src="script.js"></script>
