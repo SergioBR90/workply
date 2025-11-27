@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Workply - Conectando talento y empresas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Workply</div>
+        <nav class="nav">
+            <a href="#" id="btn-home">Inicio</a>
+            <a href="#" id="btn-trabajador">Soy trabajador</a>
+            <a href="#" id="btn-empresa">Soy empresa</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Sección de inicio -->
+        <section id="home-section" class="section active">
+            <h1>Encuentra trabajo o talento de forma sencilla</h1>
+            <p>
+                Workply conecta <strong>trabajadores</strong> y <strong>empresas</strong>
+                de manera rápida, clara y sin complicaciones.
+            </p>
+
+            <div class="home-buttons">
+                <button id="home-trabajador" class="btn-primario">
+                    Quiero buscar trabajo
+                </button>
+                <button id="home-empresa" class="btn-secundario">
+                    Quiero encontrar candidatos
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección formulario trabajador -->
+        <section id="trabajador-section" class="section">
+            <h2>Registro para trabajadores</h2>
+            <p>Cuéntanos quién eres y qué tipo de trabajo buscas.</p>
+
+            <form id="form-trabajador" class="formulario">
+                <label>
+                    Nombre completo
+                    <input type="text" name="nombre" required>
+                </label>
+
+                <label>
+                    Email de contacto
+                    <input type="email" name="email" required>
+                </label>
+
+                <label>
+                    Ciudad / Ubicación
+                    <input type="text" name="ciudad">
+                </label>
+
+                <label>
+                    Puesto o perfil profesional
+                    <input type="text" name="perfil" placeholder="Ej: Operario, programador, administrativo...">
+                </label>
+
+                <label>
+                    Experiencia
+                    <textarea name="experiencia" rows="3" placeholder="Breve resumen de tu experiencia"></textarea>
+                </label>
+
+                <button type="submit" class="btn-primario">Enviar mi perfil</button>
+            </form>
+        </section>
+
+        <!-- Sección formulario empresa -->
+        <section id="empresa-section" class="section">
+            <h2>Registro para empresas</h2>
+            <p>Publica tus ofertas y encuentra el perfil que necesitas.</p>
+
+            <form id="form-empresa" class="formulario">
+                <label>
+                    Nombre de la empresa
+                    <input type="text" name="empresa" required>
+                </label>
+
+                <label>
+                    Persona de contacto
+                    <input type="text" name="contacto" required>
+                </label>
+
+                <label>
+                    Email de contacto
+                    <input type="email" name="email" required>
+                </label>
+
+                <label>
+                    Ciudad / Ubicación
+                    <input type="text" name="ciudad">
+                </label>
+
+                <label>
+                    Puesto que buscas
+                    <input type="text" name="puesto" placeholder="Ej: Técnico mantenimiento, analista, etc.">
+                </label>
+
+                <label>
+                    Descripción de la oferta
+                    <textarea name="descripcion" rows="3" placeholder="Funciones principales, horario, tipo de contrato..."></textarea>
+                </label>
+
+                <button type="submit" class="btn-primario">Publicar necesidad</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Workply · Demo inicial · 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
