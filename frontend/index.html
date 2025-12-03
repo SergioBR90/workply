@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workply - Conecta talento y empresas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<hr>
+<h2>Prueba conexión con la base de datos</h2>
+
+<form id="testForm">
+  <label>
+    Nombre:
+    <input type="text" id="nameInput" required>
+  </label>
+  <br><br>
+  <label>
+    Email:
+    <input type="email" id="emailInput" required>
+  </label>
+  <br><br>
+  <button type="submit">Enviar prueba</button>
+</form>
+
+<p id="resultMsg"></p>
+
+<script>
+  document.getElementById('testForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+
+    try {
+      const response = await fetch('http://localhost:8080/api/test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email })
+      });
+
+      const text = await response.text();
+      document.getElementById('resultMsg').textContent = text;
+    } catch (err) {
+      document.getElementById('resultMsg').textContent = 'Error al conectar con el backend';
+      console.error(err);
+    }
+  });
+</script>
+
+
+<body>
+    <header class="topbar">
+        <div class="logo">Workply</div>
+        <nav class="menu">
+            <button class="menu-btn active" data-section="inicio">Inicio</button>
+            <button class="menu-btn" data-section="trabajadores">Trabajadores</button>
+            <button class="menu-btn" data-section="empresas">Empresas</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- INICIO -->
+        <section id="inicio" class="section visible">
+            <div class="hero">
+                <h1>Encuentra el trabajo o el talento ideal</h1>
+                <p class="subtitle">
+                    Workply conecta trabajadores y empresas de forma rápida y sencilla.
+                </p>
+            </div>
+
+            <!-- Tarjetas de entrada -->
+            <div class="cards">
+                <div id="cardTrabajadores" class="card inicio-card clickable">
+                    <h2>Para trabajadores</h2>
+                    <p>Crea tu perfil, indica tu experiencia y recibe ofertas adaptadas a ti.</p>
+                    <ul>
+                        <li>📝 Perfil profesional básico</li>
+                        <li>🔍 Búsqueda rápida por ciudad y sector</li>
+                        <li>⭐ Guarda tus ofertas favoritas</li>
+                    </ul>
+                </div>
+
+                <div id="cardEmpresas" class="card inicio-card clickable">
+                    <h2>Para empresas</h2>
+                    <p>Publica ofertas y gestiona candidatos desde una sola pantalla.</p>
+                    <ul>
+                        <li>👥 Publicación de ofertas</li>
+                        <li>📋 Listado de candidatos</li>
+                        <li>✔ Estado de cada candidatura</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ofertas destacadas en la portada -->
+            <h2 style="margin-top: 30px; margin-bottom: 10px;">Ofertas destacadas</h2>
+            <p class="subtitle">Algunas ofertas recientes de ejemplo:</p>
+            <div id="ofertasDestacadas" class="cards">
+                <!-- Se rellena desde script.js -->
+            </div>
+        </section>
+
+        <!-- TRABAJADORES -->
+        <section id="trabajadores" class="section">
+            <h1>Zona de trabajadores</h1>
+            <p class="subtitle">
+                Aquí podrás buscar ofertas y más adelante registrarte en la plataforma.
+            </p>
+
+            <!-- Registro sencillo de trabajador (demo) -->
+            <form id="formRegistroTrabajador" class="form">
+                <h2>Registro básico de trabajador</h2>
+                <label>
+                    Nombre y apellidos:
+                    <input type="text" id="regNombre" required>
+                </label>
+                <label>
+                    Email de contacto:
+                    <input type="email" id="regEmail" required>
+                </label>
+                <label>
+                    Ciudad:
+                    <input type="text" id="regCiudad" required>
+                </label>
+                <label>
+                    Perfil profesional (ej: operario de producción, programador Java...):
+                    <input type="text" id="regPerfil" required>
+                </label>
+                <label>
+                    Experiencia / resumen:
+                    <textarea id="regExperiencia" rows="3"></textarea>
+                </label>
+                <button type="submit">Guardar perfil</button>
+            </form>
+
+            <!-- Filtros de ofertas -->
+            <div class="filters">
+                <input type="text" id="filtroPalabra" placeholder="Buscar por palabra clave (ej: operario, programador)">
+                <input type="text" id="filtroCiudad" placeholder="Ciudad (ej: Madrid, Sevilla)">
+                <button id="btnBuscarOfertas">Buscar ofertas</button>
+            </div>
+
+            <div id="listaOfertas" class="cards">
+                <!-- Se rellena desde script.js -->
+            </div>
+        </section>
+
+        <!-- EMPRESAS -->
+        <section id="empresas" class="section">
+            <h1>Zona de empresas</h1>
+            <p class="subtitle">
+                Publica ofertas y revisa candidatos. Ahora las ofertas se guardan en la base de datos.
+            </p>
+
+            <form id="formOferta" class="form">
+                <h2>Crear oferta de empleo</h2>
+
+                <label>
+                    Puesto:
+                    <input type="text" id="ofertaPuesto" required>
+                </label>
+
+                <label>
+                    Ciudad:
+                    <input type="text" id="ofertaCiudad" required>
+                </label>
+
+                <label>
+                    Descripción:
+                    <textarea id="ofertaDescripcion" rows="3" required></textarea>
+                </label>
+
+                <button type="submit">Guardar oferta</button>
+            </form>
+
+            <h2>Ofertas creadas</h2>
+            <div id="ofertasEmpresa" class="cards">
+                <!-- Se rellena desde script.js con las ofertas del backend -->
+            </div>
+        </section>
+
+        <!-- DETALLE OFERTA -->
+        <section id="detalleOferta" class="section">
+            <button class="back-btn" id="btnVolverOfertas">← Volver a las ofertas</button>
+            <div id="detalleContenido" class="card">
+                <!-- Aquí pintamos el detalle de la oferta -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Workply © 2025 · Proyecto personal de aprendizaje
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
